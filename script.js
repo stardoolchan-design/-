@@ -1,4 +1,4 @@
-﻿const revealElements = document.querySelectorAll('.reveal');
+const revealElements = document.querySelectorAll('.reveal');
 const bgMusic = document.getElementById('bg-music');
 const snowLayer = document.querySelector('.snow-layer');
 const planetField = document.querySelector('.planet-field');
@@ -273,6 +273,9 @@ const renderJavaQuiz = () => {
           btn.classList.add('wrong');
         }
       });
+      if (index === quiz.answer) {
+        addScore(10);
+      }
       javaFeedback.textContent =
         index === quiz.answer ? '정답입니다! ' + quiz.explain : '아쉬워요. ' + quiz.explain;
     });
@@ -410,9 +413,15 @@ let codingCorrect = 0;
 let codingLocked = false;
 let currentCoding = null;
 
+const addScore = (points) => {
+  codingScore += points;
+  updateScoreHud();
+};
+
 const updateScoreHud = () => {
-  if (scoreValue) {
-    scoreValue.textContent = `${codingScore}`;
+  const scoreEl = scoreValue || document.getElementById('score-value');
+  if (scoreEl) {
+    scoreEl.textContent = `${codingScore}`;
   }
   if (codingCounter) {
     codingCounter.textContent = `${codingCorrect} / ${codingQuestions.length}`;
@@ -448,9 +457,8 @@ const renderCodingQuestion = () => {
       if (codingLocked) return;
       if (index === currentCoding.answer) {
         codingLocked = true;
-        codingScore += 10;
         codingCorrect += 1;
-        updateScoreHud();
+        addScore(10);
         button.classList.add('correct');
         const buttons = codingOptions.querySelectorAll('button');
         buttons.forEach((btn) => {
