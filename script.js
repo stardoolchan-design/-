@@ -7,10 +7,6 @@ const javaMission = document.getElementById('java-mission');
 const javaMissionBtn = document.getElementById('java-mission-btn');
 const javaTip = document.getElementById('java-tip');
 const javaTipBtn = document.getElementById('java-tip-btn');
-const javaQuestion = document.getElementById('java-question');
-const javaOptions = document.getElementById('java-options');
-const javaFeedback = document.getElementById('java-feedback');
-const javaQuizBtn = document.getElementById('java-quiz-btn');
 const scoreValue = document.getElementById('score-value');
 const codingLang = document.getElementById('coding-lang');
 const codingCounter = document.getElementById('coding-counter');
@@ -131,111 +127,13 @@ setInterval(() => {
 const javaMissions = [
   '배열의 길이를 구하는 JS 함수와 Python 함수를 비교해 보세요.',
   '리스트/배열에 값을 추가하는 방법을 JS와 Python으로 써 보세요.',
-  '문자열에서 모음 개수를 세는 함수를 JS와 Python으로 구현해 보세요.',
-  '반복문으로 1부터 50까지 홀수만 출력해 보세요.',
   '딕셔너리/객체에서 키 목록을 가져오는 코드를 작성해 보세요.'
 ];
 
 const javaTips = [
-  'JS에서는 ===로 값과 타입을 함께 비교합니다.',
-  'Python 리스트는 append()로 요소를 추가합니다.',
   'JS 배열 길이는 length, Python은 len()입니다.',
-  'JS 이벤트는 addEventListener()로 등록합니다.',
-  'Python은 def 키워드로 함수를 정의합니다.',
-  'JS 콘솔 출력은 console.log()입니다.'
-];
-
-const javaQuizzes = [
-  {
-    question: 'JavaScript 배열의 길이를 구할 때 사용하는 속성은?',
-    options: ['length', 'size()', 'count'],
-    answer: 0,
-    explain: '배열 길이는 length로 확인합니다.'
-  },
-  {
-    question: 'Python 리스트에 요소를 추가할 때 쓰는 메서드는?',
-    options: ['add()', 'append()', 'push()'],
-    answer: 1,
-    explain: '리스트는 append()로 요소를 추가합니다.'
-  },
-  {
-    question: 'JavaScript에서 문자열을 숫자로 바꾸는 함수는?',
-    options: ['Number()', 'toString()', 'concat()'],
-    answer: 0,
-    explain: 'Number() 또는 parseInt()로 변환할 수 있습니다.'
-  },
-  {
-    question: 'Python에서 조건이 참일 때만 실행하는 키워드는?',
-    options: ['if', 'for', 'def'],
-    answer: 0,
-    explain: 'if 문으로 조건을 확인합니다.'
-  },
-  {
-    question: 'JavaScript에서 함수를 선언하는 키워드는?',
-    options: ['function', 'var', 'return'],
-    answer: 0,
-    explain: 'function 키워드로 함수를 선언합니다.'
-  },
-  {
-    question: 'Python에서 문자열 길이를 구하는 함수는?',
-    options: ['size()', 'len()', 'length()'],
-    answer: 1,
-    explain: 'len() 함수로 문자열 길이를 구합니다.'
-  },
-  {
-    question: 'JavaScript에서 콘솔에 출력할 때 쓰는 함수는?',
-    options: ['print()', 'log()', 'console.log()'],
-    answer: 2,
-    explain: 'console.log()로 출력합니다.'
-  },
-  {
-    question: 'Python 반복문에서 범위를 만드는 함수는?',
-    options: ['range()', 'loop()', 'repeat()'],
-    answer: 0,
-    explain: 'range()로 반복 범위를 만듭니다.'
-  },
-  {
-    question: 'JavaScript에서 객체의 키 목록을 배열로 가져오는 메서드는?',
-    options: ['Object.keys()', 'Object.values()', 'Object.entries()'],
-    answer: 0,
-    explain: 'Object.keys()가 키 목록을 반환합니다.'
-  },
-  {
-    question: 'Python 딕셔너리에서 값만 가져오는 메서드는?',
-    options: ['values()', 'keys()', 'items()'],
-    answer: 0,
-    explain: 'values()는 값 목록을 반환합니다.'
-  },
-  {
-    question: 'JavaScript에서 이벤트를 등록할 때 사용하는 메서드는?',
-    options: ['addEventListener()', 'addHandler()', 'attach()'],
-    answer: 0,
-    explain: 'addEventListener()로 이벤트를 등록합니다.'
-  },
-  {
-    question: 'Python에서 함수를 정의할 때 쓰는 키워드는?',
-    options: ['func', 'def', 'lambda'],
-    answer: 1,
-    explain: 'def 키워드로 함수를 정의합니다.'
-  },
-  {
-    question: 'JavaScript에서 참/거짓을 나타내는 자료형은?',
-    options: ['Boolean', 'Number', 'String'],
-    answer: 0,
-    explain: 'Boolean 타입이 참/거짓을 나타냅니다.'
-  },
-  {
-    question: 'Python 리스트를 정렬하는 메서드는?',
-    options: ['sort()', 'order()', 'arrange()'],
-    answer: 0,
-    explain: 'sort() 메서드로 리스트를 정렬합니다.'
-  },
-  {
-    question: 'JavaScript strict equality 비교 연산자는?',
-    options: ['==', '===', '!='],
-    answer: 1,
-    explain: '===는 값과 타입을 모두 비교합니다.'
-  }
+  'Python 리스트는 append()로 요소를 추가합니다.',
+  'JS에서는 ===로 값과 타입을 함께 비교합니다.'
 ];
 
 const pickRandom = (list) => list[Math.floor(Math.random() * list.length)];
@@ -252,40 +150,8 @@ const updateJavaTip = () => {
   }
 };
 
-const renderJavaQuiz = () => {
-  if (!javaQuestion || !javaOptions || !javaFeedback) return;
-  const quiz = pickRandom(javaQuizzes);
-  javaQuestion.textContent = quiz.question;
-  javaOptions.innerHTML = '';
-  javaFeedback.textContent = '';
-
-  quiz.options.forEach((option, index) => {
-    const button = document.createElement('button');
-    button.className = 'quiz-option';
-    button.type = 'button';
-    button.textContent = option;
-    button.addEventListener('click', () => {
-      const buttons = javaOptions.querySelectorAll('button');
-      buttons.forEach((btn, btnIndex) => {
-        btn.disabled = true;
-        btn.classList.toggle('correct', btnIndex === quiz.answer);
-        if (btnIndex === index && btnIndex !== quiz.answer) {
-          btn.classList.add('wrong');
-        }
-      });
-      if (index === quiz.answer) {
-        addScore(10);
-      }
-      javaFeedback.textContent =
-        index === quiz.answer ? '정답입니다! ' + quiz.explain : '아쉬워요. ' + quiz.explain;
-    });
-    javaOptions.appendChild(button);
-  });
-};
-
 updateJavaMission();
 updateJavaTip();
-renderJavaQuiz();
 
 if (javaMissionBtn) {
   javaMissionBtn.addEventListener('click', updateJavaMission);
@@ -295,9 +161,6 @@ if (javaTipBtn) {
   javaTipBtn.addEventListener('click', updateJavaTip);
 }
 
-if (javaQuizBtn) {
-  javaQuizBtn.addEventListener('click', renderJavaQuiz);
-}
 
 const codingQuestions = [
   {
